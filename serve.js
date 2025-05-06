@@ -5,6 +5,10 @@ const api = require("./utils/api");
 dotenv.config();
 const app = express();
 const cors = require('cors');
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 app.use(cors())
 let fakeRedis = {}
 
@@ -28,9 +32,10 @@ app.post("/api/v2/create", async (req, res) => {
                     'headers': {
                       'user-agent': ' Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
                       'Content-Type': 'application/json',
-                      'X-API-KEY':req.header['X-API-SIGN'],
-                      'X-API-SIGN':req.header['X-API-SIGN']
+                      'X-API-KEY':req.headers['x-api-key'],
+                      'X-API-SIGN':req.headers['x-api-sign']
                     },
+                    'body':JSON.stringify(req.body)
                 }
             ) 
         )
@@ -53,9 +58,10 @@ app.post("/api/v2/order", async (req, res) => {
                     'headers': {
                       'user-agent': ' Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
                       'Content-Type': 'application/json',
-                      'X-API-KEY':req.header['X-API-SIGN'],
-                      'X-API-SIGN':req.header['X-API-SIGN']
+                      'X-API-KEY':req.headers['x-api-key'],
+                      'X-API-SIGN':req.headers['x-api-sign']
                     },
+                    'body':JSON.stringify(req.body)
                 }
             ) 
         )
