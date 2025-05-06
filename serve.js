@@ -17,7 +17,7 @@ app.get("/rates/fixed.xml", async (req, res) => {
     return res.send(fakeRedis)
 });
 
-app.get("/api/v2/create", async (req, res) => {
+app.post("/api/v2/create", async (req, res) => {
     try{
         return res.send(
             await api.anyRequestsRaw(
@@ -42,7 +42,7 @@ app.get("/api/v2/create", async (req, res) => {
     }
 });
 
-app.get("/api/v2/order", async (req, res) => {
+app.post("/api/v2/order", async (req, res) => {
     try{
         return res.send(
             await api.anyRequestsRaw(
