@@ -4,7 +4,8 @@ const dotenv = require("dotenv");
 const api = require("./utils/api");
 dotenv.config();
 const app = express();
-
+const cors = require('cors');
+app.use(cors())
 let fakeRedis = {}
 
 app.get("/", (req, res) =>  res.send({
